@@ -1,0 +1,25 @@
+import openpyxl
+import random
+
+# Create a new workbook and select the active worksheet
+wb = openpyxl.Workbook()
+ws = wb.active
+
+# Define the question and possible answers
+question = "Students’ knowledge about the causes of climate change"
+answers = ["Deforestation", "Burning fossil fuels", "Industrial pollution", "Natural cycles", "Transport-related carbon emission"]
+
+# Write the question in the first row
+ws.append([question])
+
+
+# Simulate respondents choosing 2 or 3 options randomly
+num_respondents = 150  # Number of respondents
+for i in range(num_respondents):
+    num_choices = random.choice([3, 4])
+    choices = random.sample(answers, num_choices)
+    choices_str = ", ".join(choices)
+    ws.append([choices_str])
+
+# Save the workbook to a file
+wb.save("11.xlsx")
